@@ -64,6 +64,22 @@ app.post('/api/notes', (req, res) => {
     res.sendFile(path.join(__dirname, './public/notes.html'));
   });
 
+
+  app.delete('/api/notes/:id', (req, res) => {
+    const id = req.params.id;
+    let note;
+
+    notes.map((element, index) => {
+      if (element.id == id){
+        note = element
+        notes.splice(index, 1)
+        return res.json(note);
+      } 
+    
+    })
+});
+
+
 app.listen(3001, () => {
     console.log(`API server now on port 3001!`);
   });
